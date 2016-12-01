@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+}
+
+.hidden {
+  display: none;
+}
+
+.App {
+  position: relative;
+  padding: 60px;
+  text-align: left;
+}
+
+.ContentCard {
+  position: fixed;
+  left: 5%;
+  padding: 20px;
+  background: #fff;
+  -webkit-box-shadow: 2px 4px 10px 1px #888;
+   box-shadow: 2px 4px 10px 1px #888; 
+  opacity: 0.8;
+  z-index: 5;
+}
+
+.CardCollections {
+  bottom: 5%;
+  padding-top: 10px;
+  max-height: 400px;
+  overflow: scroll;
+}
+
+.CardCollections ul {
+  list-style: none;
+  padding: 0;
+}
+
+.CardCollections ul li {
+  margin: 0;
+  padding: 0;
+}
+
+.CardInput {
+  padding: 60px 10px 40px 10px;
+}
+
+.Cards {
+  float: right;
+  min-width: 300px;
+  max-width: 550px;
+  width: 100%;
+}
