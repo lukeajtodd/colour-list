@@ -102,7 +102,7 @@ class App extends Component {
         return (<span key={Date.now() + Math.random() * Math.random()} style={Object.assign({ background: color }, spanBlobStyles)}></span>)
       });
       return (
-        <div onClick={() => {this.loadCollection(collection)}}>
+        <div style={{ cursor: "pointer" }} onClick={() => {this.loadCollection(collection)}}>
           <div style={{background: "black", maxWidth: 70}}>
             {spanColor}
           </div>
