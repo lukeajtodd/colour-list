@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Card';
 import CardAdder from './CardAdder';
+import Overwrite from './Overwrite.js';
 import './App.css';
 import Rebase from 're-base';
 
@@ -141,6 +142,7 @@ export default class App extends Component {
           <h1>{this.state.currentCollection.name}</h1>
           {Cards}
         </div>
+      <Overwrite />
       </div>
     );
   }
