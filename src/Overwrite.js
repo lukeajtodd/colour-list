@@ -26,7 +26,7 @@ const OverwritePopup = () => {
   let overwritten;
 
   return (
-    <div>
+    <div className="overwrite-module hidden">
       <div style={overlayStyles}></div>
       <div style={popupStyles}>
         <form>

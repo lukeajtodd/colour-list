@@ -45,15 +45,20 @@ export default class App extends Component {
     };
   }
 
-  saveCollection = (e, nameInput) => {
+  saveCollection = (e, nameInput, overwrite = false) => {
     e.preventDefault();
     if (this.state.colours.length < 1) return false;
-    if (this.checkCollections(nameInput.value)) {
+    if (this.checkCollections(nameInput.value) && overwrite === false) {
+      document.querySelector('.overwrite-module').classList.remove('hidden');
       return false;
-    };
+    }
     let newColl = {
       name: nameInput.value,
       colours: this.state.colours
+    }
+    if (this.checkCollections(nameInput.value) && overwrite ==== true) {
+      document.querySelector('.overwrite-module').classList.add('hidden');
+      
     }
     this.state.collections.push(newColl);
     base.post(`collections`, {
