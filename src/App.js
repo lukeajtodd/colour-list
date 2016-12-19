@@ -24,7 +24,7 @@ class App extends Component {
 
   removeClick = (thisColour) => {
     const amendedColours = this.state.colours.filter((colour) => {
-      if (thisColour != colour) return colour
+      if (thisColour !== colour) return colour
     });
 
     this.setState({
@@ -34,7 +34,7 @@ class App extends Component {
 
   submitHandler = (e, value) => {
     e.preventDefault();
-    if (value.match(/^#(?:[0-9a-f]{3}){1,2}$/i) && value != '' && value != '#') {
+    if (value.match(/^#(?:[0-9a-f]{3}){1,2}$/i) && value !== '' && value !== '#') {
       let tempArr = this.state.colours;
       tempArr.push(value);
       this.setState({
@@ -43,17 +43,33 @@ class App extends Component {
     };
   }
 
-  saveCollection = (e) => {
+  saveCollection = (e, nameInput) => {
     e.preventDefault();
-    this.state.collections.push(this.state.colours);
+    if (this.state.colours.length < 1) return false;
+    if (this.checkCollections(nameInput.value)) {
+      return false;
+    };
+    let newColl = {
+      name: nameInput.value,
+      colours: this.state.colours
+    }
+    this.state.collections.push(newColl);
     base.post(`collections`, {
       data: this.state.collections
     });
   }
 
+  checkCollections = (name) => {
+    let exists = false;
+    this.state.collections.filter((collection) => {
+      if (collection.name === name) exists = true;
+    });
+    return exists;
+  }
+
   loadCollection = (collectionToLoad) => {
     this.setState({
-      colours: collectionToLoad
+      colours: collectionToLoad.colours
     });
   }
 
@@ -80,8 +96,6 @@ class App extends Component {
 
   render() {
 
-    let i = 1;
-
     const collectionStyles = {
       padding: 5,
       margin: 5
@@ -98,22 +112,22 @@ class App extends Component {
     });
 
     const Collections = this.state.collections.map((collection) => {
-      let spanColor = collection.map((color) => {
+      let spanColor = collection.colours.map((color) => {
         return (<span key={Date.now() + Math.random() * Math.random()} style={Object.assign({ background: color }, spanBlobStyles)}></span>)
       });
       return (
-        <div style={{ cursor: "pointer" }} onClick={() => {this.loadCollection(collection)}}>
+        <div key={Date.now() + Math.random() * Math.random()} style={{ cursor: "pointer" }} onClick={() => {this.loadCollection(collection)}}>
           <div style={{background: "black", maxWidth: 70}}>
             {spanColor}
           </div>
-          <li style={collectionStyles}>Coll. {i++}</li>
+          <li style={collectionStyles}>{collection.name}</li>
         </div>
       )
     });
 
     return (
       <div className="App">
-        <div className={this.state.collections == '' ? 'hidden' : ''}>
+        <div className={this.state.collections === '' ? 'hidden' : ''}>
           <div className="ContentCard CardCollections">
             <ul>{Collections}</ul>
           </div>

@@ -19,18 +19,26 @@ const CardAdder = ({submit, save, clear}) => {
         fontSize: 18
     }
 
-    let input;
+    let colorInput, nameInput;
 
     return (
-        <form onSubmit={(e) => { 
-            submit(e, input.value);
-            input.value = '';
-        }}>
-            <input ref={(node) => { input = node; }} style={inputStyles} type="text" placeholder='#'/>
-            <button style={submitStyles} type="submit"> ADD </button>
-            <button onClick={(e) => { save(e) }} style={submitStyles}>SAVE</button>
-            <button onClick={(e) => { clear(e) }} style={submitStyles}>CLEAR</button>
-        </form>
+        <div>
+          <form onSubmit={(e) => {
+              submit(e, colorInput.value);
+              colorInput.value = '';
+          }}>
+              <input ref={(node) => { colorInput = node; }} style={inputStyles} type="text" placeholder='#'/>
+              <button style={submitStyles} type="submit"> ADD </button>
+          </form>
+          <form onSubmit={(e) => {
+            save(e, nameInput);
+            nameInput.value = '';
+          }}>
+            <input ref={(node) => { nameInput = node; }} style={inputStyles} type="text" required/>
+            <button type="submit" style={submitStyles}>SAVE</button>
+          </form>
+          <button onClick={(e) => { clear(e) }} style={submitStyles}>CLEAR</button>
+        </div>
     )
 };
 
