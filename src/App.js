@@ -56,9 +56,9 @@ export default class App extends Component {
       name: nameInput.value,
       colours: this.state.colours
     }
-    if (this.checkCollections(nameInput.value) && overwrite ==== true) {
+    if (this.checkCollections(nameInput.value) && overwrite === true) {
       document.querySelector('.overwrite-module').classList.add('hidden');
-      
+
     }
     this.state.collections.push(newColl);
     base.post(`collections`, {
