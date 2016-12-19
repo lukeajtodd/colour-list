@@ -12,7 +12,7 @@ const base = Rebase.createClass({
       messagingSenderId: "59197291170"
 });
 
-class App extends Component {
+export default class App extends Component {
 
   constructor(props) {
     super(props);
@@ -43,6 +43,7 @@ class App extends Component {
     };
   }
 
+<<<<<<< HEAD
   saveCollection = (e, nameInput) => {
     e.preventDefault();
     if (this.state.colours.length < 1) return false;
@@ -142,5 +143,3 @@ class App extends Component {
     );
   }
 }
-
-export default App;
