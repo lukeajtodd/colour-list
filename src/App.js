@@ -17,6 +17,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentCollection: {},
       collections: [],
       colours: []
     }
@@ -43,7 +44,6 @@ export default class App extends Component {
     };
   }
 
-<<<<<<< HEAD
   saveCollection = (e, nameInput) => {
     e.preventDefault();
     if (this.state.colours.length < 1) return false;
@@ -68,9 +68,10 @@ export default class App extends Component {
     return exists;
   }
 
-  loadCollection = (collectionToLoad) => {
+  loadCollection = (collection) => {
     this.setState({
-      colours: collectionToLoad.colours
+      currentCollection: collection,
+      colours: collection.colours
     });
   }
 
@@ -137,6 +138,7 @@ export default class App extends Component {
           <CardAdder submit={this.submitHandler} save={this.saveCollection} clear={this.clearColours}/>
         </div>
         <div className="Cards">
+          <h1>{this.state.currentCollection.name}</h1>
           {Cards}
         </div>
       </div>
